@@ -4,11 +4,13 @@
 
 This module makes it easy to replace references to your bower resources in your app with links to the Angular libraries on the Google CDN.
 
-## Getting started
+## Install
 
-Install: `npm install --save-dev google-cdn google-cdn-data-angular`
+```bash
+$ npm install --save-dev google-cdn google-cdn-data-angular
+```
 
-### Example
+## Usage
 
 *bower.json*:
 
@@ -16,23 +18,23 @@ Install: `npm install --save-dev google-cdn google-cdn-data-angular`
 {
   "name": "my-awesome-app",
   "dependencies": {
-    "angular": "~1.5.0"
+    "angular": "1.5.6"
   }
 }
 ```
 
 ```javascript
 const googlecdn = require('google-cdn');
+const fs = require('fs');
+const assert = require('chai').assert;
+const bowerJSON = JSON.parse(fs.readFileSync('bower.json', 'utf8'));
 
-const bowerConfig = loadJSON('bower.json');
 const markup = '<script src="bower_components/angular/angular.js"></script>';
-googlecdn(markup, bowerConfig, { cdn: require('google-cdn-data-angular') }, function (err, result) {
+googlecdn(markup, bowerJSON, { cdn: require('google-cdn-data-angular') }, function(err, result) {
   if (err) {
     throw err;
   }
-
-  assert.equal(result,
-    '<script src="bower_components/angular/angular.js"></script>');
+  assert.equal(result, '<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>');
 });
 ```
 
