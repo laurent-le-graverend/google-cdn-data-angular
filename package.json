@@ -27,7 +27,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "google-cdn": "^1.1.0",
-    "mocha": "^2.5.3"
+    "mocha": "^3.0.2"
   },
   "peerDependencies": {
     "google-cdn": "^1.1.0"
